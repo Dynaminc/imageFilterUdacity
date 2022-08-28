@@ -42,7 +42,7 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
   app.get("/filteredimage", async (req, res)=>{
     const imageUrl = req.query.image_url.toString();
     if (!imageUrl){
-      res.status(400).message('You need to add an imageurl as a parameter')
+      res.status(400).send('You need to add an imageurl as a parameter')
     }
     const outpath =
         "/tmp/filtered." + Math.floor(Math.random() * 2000) + ".jpg";
