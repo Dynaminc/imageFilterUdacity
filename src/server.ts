@@ -1,4 +1,5 @@
 import express from 'express';
+import {Request, Response} fomr 'express';
 import bodyParser from 'body-parser';
 import {filterImageFromURL, deleteLocalFiles} from './util/util';
 
@@ -33,14 +34,14 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
   
   // Root Endpoint
   // Displays a simple message to the user
-  app.get( "/", async ( req, res ) => {
+  app.get( "/", async ( req:Request, res:Response ) => {
     res.send("Demilade's Udacity Project try GET /filteredimage?image_url={{}}")
   } );
   
 
 //filter image endpoint
   app.get("/filteredimage", async (req, res)=>{
-    const imageUrl = req.query.image_url.toString();
+    const imageUrl:string = req.query.image_url.toString();
     if (!imageUrl){
       res.status(400).send('You need to add an imageurl as a parameter')
     }
