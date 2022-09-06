@@ -40,15 +40,15 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util';
   
 
 //filter image endpoint
-  app.get("/filteredimage", async (req, res)=>{
+  app.get("/filteredimage", async (req: Request, res: Response)=>{
     const imageUrl:string = req.query.image_url.toString();
     if (!imageUrl){
       res.status(400).send('You need to add an imageurl as a parameter')
     }
-    const outpath =
+    const outpath: string =
         "/tmp/filtered." + Math.floor(Math.random() * 2000) + ".jpg";
     console.log(__dirname + outpath);
-    const filteredImage = await filterImageFromURL(imageUrl);
+    const filteredImage: string = await filterImageFromURL(imageUrl);
     var path = require("path");
     res.status(200).sendFile(path.resolve(filteredImage), () => {
       deleteLocalFiles([filteredImage]);
